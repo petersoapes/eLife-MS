@@ -18,16 +18,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Sex-Specific Evolution of the Meiotic Recombination Rate}
 
-\author[1*]{April L. Peterson}
-\author[1,2\authfn{1}\authfn{3}]{Bret Payseur}
+\author[1]{April L. Peterson}
+\author[1]{Bret Payseur}
 \affil[1]{University of Wisconsin-Madison}
-
 
 \corr{email1@example.com}{FMS}
 \corr{email2@example.com}{FS}
 
 \contrib[\authfn{1}]{These authors contributed equally to this work}
-\contrib[\authfn{2}]{These authors also contributed equally to this work}
 
 \presentadd[\authfn{3}]{Department, Institute, Country}
 \presentadd[\authfn{4}]{Department, Institute, Country}
@@ -50,14 +48,14 @@ Although meiotic recombination is required for successful gametogenesis in most 
 
 Thanks for using Overleaf to write your article. Your introduction goes here! Some examples of commonly used commands and features are listed below, to help you get started.
 
-Here's a second paragraph to test paragraph indents. \lipsum[1]
+Here's a second paragraph to test paragraph indents.
 
-\section{Results (Level 1 heading)}
+\section{Results}
 
 
 \subsection{Genome-wide recombination rate evolves differently in females and males} 
 
-We used counts of MLH1 foci per cell to estimate genome-wide recombination rates in `r length(unique(  (main.table  %>% filter(species == "M.musculus") )$strain) )` wild-derived inbred strains sampled from three subspecies of house mice (*M. m. domesticus*, _M. m. musculus_ and _M. m. molossinus_ ) and three additional species of Mus (*M. spretus*, _M. spicilegus_ , and *M. caroli*). Mean MLH1 focus counts for `r sum(main.table$Nmice)` mice were quantified from an average of `r mean( (Mouse.Table_HQ %>% filter(sex == "male") )$Ncells, na.rm = T)` spermatocytes per male (for a total of `r formatC( sum( (Mouse.Table_HQ %>% filter(sex == "male") )$Ncells, na.rm = T), format="d", big.mark=",")` spermatocytes) and `r mean( (Mouse.Table_HQ %>% filter(sex == "female") )$Ncells, na.rm = T)` oocytes per female (for a total of `r formatC(sum( (main.table %>% filter(species == "M.musculus") %>% filter(sex == "female"))$Ncells), format="d", big.mark=",")` oocytes).
+We used counts of MLH1 foci per cell to estimate genome-wide recombination rates in 
 
 \subsection{Synaptonemal complexes are longer in females}
 
@@ -89,7 +87,7 @@ Regardless of the underlying mechanism, our results provide a rare demonstration
 
 Our findings further reveal that evolution of the genome-wide recombination rate does not require major changes in the degree of chromatin compaction. Female house mice consistently show longer SCs, even in strains with more recombination in males. Studies in mice \citep{lynn2002, petkov2007} and humans \citep{gruhn2013, tease2004} suggest that chromosomal axes are longer (and DNA loops are shorter) in females than males. Some authors have suggested that conserved sex differences in crossover positioning (more uniform placement in females) and interference strength (stronger interference in males) could be due to looser chromatin packing of the meiotic chromosome structure in females \citep{haenel2018; @petkov2007}. A cellular model designed to explain interference attributes sexual dimorphism in chromatin structure to greater cell volumes and oscillatory movements of telomeres and kinetochores in oocytes \citep{@hulten2011_COM}. More recent work connects the sparser recombination landscape to sex differences in the crossover repair pathway \citep{wang2017inefficient}.
 
-Our conclusions are accompanied by several caveats. First, MLH1 foci only identify interfering crossovers \citep{holloway2008mus81}. Although most crossovers belong to this class **(REF)**, our approach likely underestimated genome-wide recombination rates. Evolution of the number of non-interfering crossovers is a topic worth examining. A second limitation is that our investigation of crossover locations was confined to the relatively low resolution possible with immunofluorescent cytology. Positioning crossovers with higher resolution could reveal additional evolutionary patterns. Finally, the panel of inbred lines we surveyed may not be representative of recombination rate variation within and between subspecies of house mice. We considered most available wild-derived inbred lines, but house mice have a broad geographic distribution. Nevertheless, we expect our primary conclusion that recombination rate evolves in a sex-specific manner to be robust to geographic sampling because differences between females and males exist for the same set of inbred strains.
+Our conclusions are accompanied by several caveats. First, MLH1 foci only identify interfering crossovers \citep{holloway2008mus81}. Although most crossovers belong to this class (REF), our approach likely underestimated genome-wide recombination rates. Evolution of the number of non-interfering crossovers is a topic worth examining. A second limitation is that our investigation of crossover locations was confined to the relatively low resolution possible with immunofluorescent cytology. Positioning crossovers with higher resolution could reveal additional evolutionary patterns. Finally, the panel of inbred lines we surveyed may not be representative of recombination rate variation within and between subspecies of house mice. We considered most available wild-derived inbred lines, but house mice have a broad geographic distribution. Nevertheless, we expect our primary conclusion that recombination rate evolves in a sex-specific manner to be robust to geographic sampling because differences between females and males exist for the same set of inbred strains.
 
 While the causes of sex differences in recombination remain mysterious \citep{lenormand2016}, our conclusions have implications for a wide range of recombination research. For biologists uncovering the cellular and molecular determinants of recombination, our results suggest that mechanistic differences between the sexes could vary by genetic background. For researchers charting the evolutionary trajectory of recombination, our findings indicate that sex-specific comparisons are crucial. For theoreticians building evolutionary models of recombination, different fitness regimes and genetic architectures in females and males should be considered. Elevating sex as a primary determinant of recombination would be a promising step toward integrating knowledge of cellular mechanisms with evolutionary patterns to understand recombination rate variation in nature.
 
@@ -114,13 +112,9 @@ To estimate the number of crossovers across the genome, we counted MLH1 foci. ML
 <new 2/n>
 To measure bivalent SC length, two image analysis algorithms were used. The first algorithm estimates the total (summed) SC length across bivalents for individual cells (@wang2019_SC). The second algorithm estimates the SC length of individual bivalents (@peterson2019). Both algorithms apply a ‘skeletonizing’ transformation to synapsed chromosomes that produces a single, pixel-wide ‘trace’ of the bivalent shape. Total SC length per cell was quantified from pachytene cell images (@wang2019_SC). 
 
-To reduce algorithmic errors in SC isolation, outliers were visually identified at the mouse level and removed from the data set. Mouse averages were calculated from cell-wide total SC lengths in `r formatC( length(  (Total.SC_DF  %>% filter(species == "M.musculus")  )$Random.Name), format="d", big.mark=",")` out of `r formatC( length(  (MLH1_data %>% filter(species == "M.musculus") )$Random.Name), format="d", big.mark=",")` cells with MLH1 counts. SC length of individual bivalents was quantified in pachytene cell images (@peterson2019). The DNA CrossOver algorithm (@peterson2019) isolates single, straightened bivalent shapes, returning SC length, location of MLH1 foci, and location of CREST (centromere) foci. The algorithm substantially speeds the accurate measurement of bivalents, but it sometimes interprets overlapping bivalents as single bivalents. In our data set, average proportions of bivalents per cell isolated by the algorithm ranged from `r min(algorithm.stat.category$mean_pass.rate)` (*molossinus^MSM^* male) to `r max(algorithm.stat.category$mean_pass.rate)` (*musculus^KAZ^* female). From the total set of pachytene cell images, `r formatC(  length(unique(Curated_BivData$Obj.ID ) ) , format="d", big.mark=",")` bivalent objects were isolated by the algorithm. Following a manual curation, `r formatC( length(unique(cleanCurated_BivData %>% filter(hand.foci.count != ""))$Obj.ID ), format="d", big.mark=",")` single-bivalent observations remained. The accuracy of the algorithm is high compared to hand measures after this curation step [@peterson2019]. The curated single bivalent data supplements our cell-wide MLH1 count data with MLH1 foci counts for single bivalents. Proportions of bivalents with the same number of MLH1 foci were compared across strains using a chi-square test.
+To reduce algorithmic errors in SC isolation, outliers were visually identified at the mouse level and removed from the data set. Mouse averages were calculated from cell-wide total SC lengths in 
 
-<new 3/n>
-To account for confounding effects of sex chromosomes from pooled samples of bivalents, we also considered a reduced data set including only bivalents with SC lengths below the 2nd quartile in cells with at least 17 of 20 single bivalent measures. This “short bivalent” data set included the four or five shortest bivalents and excluded the X bivalent in oocytes. A total of `r sum(Short.biv_mouse_table$n_obs )` short bivalents were isolated from `r sum(  (Short.biv_mouse_table  %>% filter(sex=="female") )$Ncells)` oocytes and `r sum(  (Short.biv_mouse_table  %>% filter(sex=="male") )$Ncells)` spermatocytes. Although this smaller data set has decreased power, it offers a more comparable set of single bivalents to compare between the sexes. A “long bivalent” data set was formed from those bivalents above the 4th quartile in SC lengths per cell. A total of `r sum(Long.biv_mouse_table$n_obs)` long bivalents were isolated from `r sum(  (Long.biv_mouse_table  %>% filter(sex=="female") )$Ncells)` oocytes and `r sum(  (Long.biv_mouse_table  %>% filter(sex=="male") )$Ncells)` spermatocytes.
 
-<new 4/n>
-To examine crossover interference, the distance (in SC units) between MLH1 foci (inter-focal distance; IFD~raw~) was measured for those single bivalents containing two MLH1 foci. A normalized measure of interference (IFD~norm~) was computed by dividing IFD~raw~ by SC length on a per-bivalent basis.
 
 \section{Some \LaTeX{} Examples}
 \label{sec:examples}
